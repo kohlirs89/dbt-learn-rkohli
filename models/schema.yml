@@ -4,11 +4,13 @@ models:
   - name: customers
     columns:
       - name: customer_id
+        description: Primary Key for the table
         tests:
           - unique
           - not_null
 
   - name: stg_customers
+    description: Staged Customer data for Jaffle Shop
     columns:
       - name: customer_id
         tests:
@@ -16,12 +18,15 @@ models:
           - not_null
 
   - name: stg_orders
+    description: Staged Orders data for Jaffle Shop
     columns:
       - name: order_id
+        description: Primary key for orders
         tests:
           - unique
           - not_null
       - name: status
+        description: "{{ doc('order_status') }}"
         tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
